@@ -23,6 +23,7 @@ class Grid:
         self.grid[coord[0]][coord[1]].value = nb
 
     def findNearestNone(self, dir, line_list, coordY):
+        print(dir, line_list, coordY)
         op = [1, -1][dir]
         re = [3, 0][dir]
         
@@ -30,8 +31,8 @@ class Grid:
         if coordY == re or line_list[coordY + op].value is not None:
             return False
         else:
-            index = coordY + op
-            while index != 3 and line_list[index].value is None :
+            index = coordY
+            while index != re and line_list[index].value is None :
                 index += op
                 
             return index
@@ -67,4 +68,5 @@ Sinon :
 
 g = Grid()
 g.grid[1][0].value = 2
-print(g.findNearestNone(1, [g.grid[i][0] for i in range(4)], 3))
+g.depl(1)
+g.print_grid()
